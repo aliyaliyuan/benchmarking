@@ -1,0 +1,192 @@
+### Current Progress & Testing
+PREFIX=/home/ahaas4/anaconda3 
+
+Followed these instructions for getting human FASTA: https://docs.thermofisher.com/r/Proteome-Discoverer-3.1-Familiarization-Guide/en-US1604629259v1
+
+
+
+### Installing conda ###
+
+Installed anaconda 
+
+To activate conda's base environment in your current shell session:
+
+eval "$(/home/ahaas4/anaconda3/bin/conda shell.YOUR_SHELL_NAME hook)" 
+
+To install conda's shell functions for easier access, first activate, then:
+
+conda init
+
+Thank you for installing Anaconda3!
+
+ahaas4@bioi:~/project$ eval "$(/home/ahaas4/anaconda3/bin/conda shell.bash hook)"
+
+(base) ahaas4@bioi:~/project$ 
+(base) ahaas4@bioi:~/project$ conda --version
+conda 26.5.3
+(base) ahaas4@bioi:~/project$ conda create -n project
+
+### Installing bioconda ###
+
+Channel "defaults" has the following notices:
+  [info] -- Thu Aug  6 00:00:00 2026
+  main-x (Anaconda's new authenticated channel) is now generally available, with thousands of additional packages from our secure supply chain. Get started at: https://anaconda.com/docs/getting-started/main-x?utm_source=channel_notices
+
+(base) ahaas4@bioi:~/project$ conda config --add channels bioconda
+(base) ahaas4@bioi:~/project$ conda config --add channels conda-forge
+(base) ahaas4@bioi:~/project$ conda config --set channel_priority strict
+
+Installing comet-ms through conda
+(base) ahaas4@bioi:~/project$ conda install bioconda::comet-ms
+...
+                                                                                                                                                                                                                        
+Preparing transaction: done                                                                                                                                                                                             
+Verifying transaction: done                                                                                                                                                                                             
+Executing transaction: done                                                                                                                                                                                             
+
+### Installing PRIDEpy
+(base) ahaas4@bioi:~/project$ pip install --upgrade pridepy
+Collecting pridepy
+  Downloading pridepy-0.0.16-py3-none-any.whl.metadata (7.4 kB)
+Requirement already satisfied: requests>=2.31.0 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from pridepy) (2.34.2)
+Collecting ratelimit>=2.2.1 (from pridepy)
+  Downloading ratelimit-2.2.1.tar.gz (5.3 kB)
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Requirement already satisfied: click>=8.1.7 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from pridepy) (8.4.1)
+Requirement already satisfied: tqdm>=4.66.1 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from pridepy) (4.68.2)
+Collecting boto3>=1.34.61 (from pridepy)
+  Downloading boto3-1.43.99-py3-none-any.whl.metadata (6.6 kB)
+Requirement already satisfied: botocore>=1.34.74 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from pridepy) (1.43.0)
+Requirement already satisfied: httpx>=0.27.0 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from pridepy) (0.28.1)
+Requirement already satisfied: defusedxml>=0.7.1 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from pridepy) (0.7.1)
+Collecting botocore>=1.34.74 (from pridepy)
+  Downloading botocore-1.43.99-py3-none-any.whl.metadata (5.6 kB)
+Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from boto3>=1.34.61->pridepy) (1.1.0)
+Collecting s3transfer<0.20.0,>=0.19.0 (from boto3>=1.34.61->pridepy)
+  Downloading s3transfer-0.19.2-py3-none-any.whl.metadata (1.7 kB)
+Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from botocore>=1.34.74->pridepy) (2.9.0.post0)
+Requirement already satisfied: urllib3!=2.2.0,<3,>=1.25.4 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from botocore>=1.34.74->pridepy) (2.7.0)
+Requirement already satisfied: six>=1.5 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from python-dateutil<3.0.0,>=2.1->botocore>=1.34.74->pridepy) (1.17.0)
+Requirement already satisfied: anyio in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from httpx>=0.27.0->pridepy) (4.12.1)
+Requirement already satisfied: certifi in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from httpx>=0.27.0->pridepy) (2026.7.22)
+Requirement already satisfied: httpcore==1.* in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from httpx>=0.27.0->pridepy) (1.0.9)
+Requirement already satisfied: idna in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from httpx>=0.27.0->pridepy) (3.18)
+Requirement already satisfied: h11>=0.16 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from httpcore==1.*->httpx>=0.27.0->pridepy) (0.16.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /home/ahaas4/anaconda3/lib/python3.14/site-packages (from requests>=2.31.0->pridepy) (3.4.7)
+Downloading pridepy-0.0.16-py3-none-any.whl (38.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.5/38.5 MB 2.9 MB/s  0:00:13
+Downloading boto3-1.43.99-py3-none-any.whl (140 kB)
+Downloading botocore-1.43.99-py3-none-any.whl (15.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.8/15.8 MB 2.8 MB/s  0:00:05
+Downloading s3transfer-0.19.2-py3-none-any.whl (90 kB)
+Building wheels for collected packages: ratelimit
+  Building wheel for ratelimit (pyproject.toml) ... done
+  Created wheel for ratelimit: filename=ratelimit-2.2.1-py3-none-any.whl size=5972 sha256=5851ad7f2e6300d2637d4708f632532678e56c84b180529d2e6eb3bdd459d9ef
+  Stored in directory: /home/ahaas4/.cache/pip/wheels/ec/d0/66/d70019df2b8d57693e052641433ee6346bee1a862b9ca7d34a
+Successfully built ratelimit
+Installing collected packages: ratelimit, botocore, s3transfer, boto3, pridepy
+  Attempting uninstall: botocore
+    Found existing installation: botocore 1.43.0
+    Uninstalling botocore-1.43.0:
+      Successfully uninstalled botocore-1.43.0
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+aiobotocore 3.7.0 requires botocore<1.43.1,>=1.42.90, but you have botocore 1.43.99 which is incompatible.
+Successfully installed boto3-1.43.99 botocore-1.43.99 pridepy-0.0.16 ratelimit-2.2.1 s3transfer-0.19.2
+(base) ahaas4@bioi:~/project$ bash wget https://raw.githubusercontent.com/PRIDE-Utilities/ms-data-core-api/master/src/test/resources/small.mzML
+/usr/bin/wget: /usr/bin/wget: cannot execute binary file
+(base) ahaas4@bioi:~/project$ wget bash wget https://raw.githubusercontent.com/PRIDE-Utilities/ms-data-core-api/master/src/test/resources/small.mzML
+--2026-09-22 12:43:52--  http://bash/
+Resolving bash (bash)... failed: Temporary failure in name resolution.
+wget: unable to resolve host address ‘bash’
+--2026-09-22 12:43:52--  http://wget/
+Resolving wget (wget)... failed: Temporary failure in name resolution.
+wget: unable to resolve host address ‘wget’
+--2026-09-22 12:43:52--  https://raw.githubusercontent.com/PRIDE-Utilities/ms-data-core-api/master/src/test/resources/small.mzML
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2026-09-22 12:43:53 ERROR 404: Not Found.
+
+(base) ahaas4@bioi:~/project$ conda activate project
+
+### Installing test data ###
+(project) ahaas4@bioi:~/project$ git clone https://github.com/HUPO-PSI/mzML.git
+Cloning into 'mzML'...
+remote: Enumerating objects: 264, done.
+remote: Counting objects: 100% (54/54), done.
+remote: Compressing objects: 100% (43/43), done.
+remote: Total 264 (delta 22), reused 25 (delta 11), pack-reused 210 (from 1)
+Receiving objects: 100% (264/264), 15.16 MiB | 3.04 MiB/s, done.
+Resolving deltas: 100% (126/126), done.
+(project) ahaas4@bioi:~/project$ cd mzML
+(project) ahaas4@bioi:~/project/mzML$ ls
+examples  legacy  README.md  schema  specification_document  validator
+(project) ahaas4@bioi:~/project/mzML$ cd examples
+(project) ahaas4@bioi:~/project/mzML/examples$ ls
+1min.mzML  tiny1.mzML0.93.xml     tiny1.mzML0.99.1.mzML   tiny2_SRM.mzML0.99.0.mzML  tiny4_LTQ-FT.mzML0.93.xml     tiny4_LTQ-FT.mzML0.99.1.mzML  tiny.msdata.mzML0.99.9.mzML  tiny.pwiz.mzML0.99.10.mzML
+2min.mzML  tiny1.mzML0.99.0.mzML  tiny2_SRM.mzML0.93.xml  tiny2_SRM.mzML0.99.1.mzML  tiny4_LTQ-FT.mzML0.99.0.mzML  tiny.msdata.mzML0.99.10.mzML  tiny.pwiz.1.1.mzML           tiny.pwiz.mzML0.99.9.mzML
+(project) ahaas4@bioi:~/project/mzML/examples$ cd ..
+(project) ahaas4@bioi:~/project/mzML$ cd ..
+(project) ahaas4@bioi:~/project$ ls
+ Anaconda3-2026.07-1-Linux-x86_64.sh  'CONDA stuff'   mzML
+
+ ### Installing human FASTA
+ https://docs.thermofisher.com/r/Proteome-Discoverer-3.1-Familiarization-Guide/en-US1604629259v1 
+
+
+
+
+ ### Tesing if comet works on test data ###
+(project) ahaas4@bioi:~/project$ comet -p
+ Comet version "2026.01 rev. 1 (e4f767c)"
+ (c) University of Washington
+
+ Created:  comet.params.new
+
+(project) ahaas4@bioi:~/project$ mv comet.params.new comet.params
+(project) ahaas4@bioi:~/project$ LS
+LS: command not found
+(project) ahaas4@bioi:~/project$ LS
+LS: command not found
+(project) ahaas4@bioi:~/project$ ls
+ Anaconda3-2026.07-1-Linux-x86_64.sh   comet.params  'CONDA stuff'   mzML
+(project) ahaas4@bioi:~/project$ cp 'CONDA stuff' notes.txt
+(project) ahaas4@bioi:~/project$ rm 'CONDA stuff'
+
+nano comet.params 
+
+Changed FASTA path file to /home/ahaas4/project/uniprotkb_proteome_UP000005640_2026_09_22.fasta
+
+comet /home/ahaas4/project/mzML/examples/1min.mzML0
+Anaconda3-2026.07-1-Linux-x86_64.sh  comet.params  mzML  notes.txt  uniprotkb_proteome_UP000005640_2026_09_22.fasta
+(project) ahaas4@bioi:~/project$ comet /home/ahaas4/project/mzML/examples/1min.mzML
+
+ Comet version "2026.01 rev. 1 (e4f767c)"
+
+ Search start:  09/22/2026, 01:00:29 PM
+ - Input file: /home/ahaas4/project/mzML/examples/1min.mzML
+   - Load spectra: error, found "<spectrum" line before parsing index attribute of previous scan:  </spectrum>
+
+ Warning - no spectra searched.
+
+# From the Sage GitHub test data 
+wget https://raw.githubusercontent.com/lazear/sage/master/tests/LQSRPAAPPAPGPGQLTLR.mzML 
+
+Did not work 
+
+Trying from PXD000001
+wget ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2012/03/PXD000001/TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01.mzXML 
+
+
+(project) ahaas4@bioi:~/project$ comet /home/ahaas4/project/test/TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01.mzXML
+
+ Comet version "2026.01 rev. 1 (e4f767c)"
+
+ Search start:  09/22/2026, 01:21:19 PM
+ - Input file: /home/ahaas4/project/test/TMT_Erwinia_1uLSike_Top10HCD_isol2_45stepped_60min_01.mzXML
+   - Load spectra: 6088
+     - Search progress: 100%
+     - Post analysis:  done
+ Search end:    09/22/2026, 01:21:27 PM, 0m:8s
